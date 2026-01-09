@@ -4,10 +4,10 @@
   "description": "Монорепозиторий для проекта Oracle Core: AI голосовой чат-робот с Node.js бэкендом и Flutter фронтендом.",
   "main": "index.js",
   "scripts": {
-    "start:backend": "npm start --prefix backend",
-    "start:frontend": "npm start --prefix frontend",
-    "install:all": "npm install && npm install --prefix backend && npm install --prefix frontend",
-    "test:all": "npm test --prefix backend && npm test --prefix frontend"
+    "start:backend": "npm start --prefix projects/backend",
+    "start:frontend": "npm start --prefix projects/frontend",
+    "install:all": "npm install && npm install --prefix projects/backend && npm install --prefix projects/frontend",
+    "test:all": "npm test --prefix projects/backend && npm test --prefix projects/frontend"
   },
   "keywords": [
     "AI",
