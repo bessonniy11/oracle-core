@@ -1,0 +1,24 @@
+{
+  "name": "oracle-core-monorepo",
+  "version": "1.0.0",
+  "description": "Монорепозиторий для проекта Oracle Core: AI голосовой чат-робот с Node.js бэкендом и Flutter фронтендом.",
+  "main": "index.js",
+  "scripts": {
+    "start:backend": "npm start --prefix backend",
+    "start:frontend": "npm start --prefix frontend",
+    "install:all": "npm install && npm install --prefix backend && npm install --prefix frontend",
+    "test:all": "npm test --prefix backend && npm test --prefix frontend"
+  },
+  "keywords": [
+    "AI",
+    "chatbot",
+    "voice",
+    "ESP32-S3",
+    "Node.js",
+    "Flutter",
+    "monorepo"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "private": true
+}
