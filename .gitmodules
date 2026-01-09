@@ -1,0 +1,6 @@
+[submodule "projects/frontend"]
+	path = projects/frontend
+	url = https://github.com/bessonniy11/oracle-core-frontend.git
+[submodule "projects/backend"]
+	path = projects/backend
+	url = https://github.com/bessonniy11/oracle-core-backend.git
