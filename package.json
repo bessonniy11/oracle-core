@@ -7,7 +7,11 @@
     "start:backend": "npm start --prefix projects/backend",
     "start:frontend": "npm start --prefix projects/frontend",
     "install:all": "npm install && npm install --prefix projects/backend && npm install --prefix projects/frontend",
-    "test:all": "npm test --prefix projects/backend && npm test --prefix projects/frontend"
+    "test:all": "npm test --prefix projects/backend && npm test --prefix projects/frontend",
+    "lint:backend": "npm run lint --prefix projects/backend",
+    "lint:frontend": "cd projects/frontend && flutter analyze",
+    "format:frontend": "cd projects/frontend && flutter format .",
+    "check:backend": "npm run typecheck --prefix projects/backend"
   },
   "keywords": [
     "AI",

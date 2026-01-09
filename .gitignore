@@ -1,0 +1,18 @@
+# Node/Backend
+node_modules
+dist
+.env
+.env.*
+coverage
+
+# Flutter/Frontend
+.dart_tool/
+build/
+flutter_export_environment.sh
+pubspec.lock
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
