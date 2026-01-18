@@ -1,0 +1,19 @@
+  if (messagesNow != null && messagesNow.isNotEmpty) {
+      Message? lastAssistant;
+      for (final m in messagesNow.reversed) {
+        if (m.role == MessageRole.assistant) {
+          lastAssistant = m;
+          break;
+        }
+      }
+      if (lastAssistant != null) {
+        if (!_speechInitCaptured) {
+          _lastSpokenMessageId = lastAssistant.id;
+          _speechInitCaptured = true;
+        } else if (lastAssistant.id != _lastSpokenMessageId && _ttsEnabled) {
+          _lastSpokenMessageId = lastAssistant.id;
+          WidgetsBinding.instance
+              .addPostFrameCallback((_) => _speech.speak(lastAssistant!.content));
+        }
+      }
+    }
