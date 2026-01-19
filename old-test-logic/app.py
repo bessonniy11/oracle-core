@@ -78,7 +78,7 @@ def hello_world():
     Тестовый эндпоинт, который возвращает приветственное сообщение.
     Используется для проверки того, что Flask-приложение запущено и работает.
     """
-    return 'Привет, Oracle Core Backend!'
+    return 'Привет, Bessonniy Oracle Backend!'
 
 
 @app.route('/chat', methods=['POST'])
