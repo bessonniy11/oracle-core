@@ -11,6 +11,23 @@
 - STT endpoint (streaming preferred, batch fallback).
 - TTS endpoint уже существует, но нужен единый контракт статусов и ошибок.
 - Сервисные метрики, корреляционные идентификаторы, ограничение размеров аудио.
+- Выбранный стек STT для MVP: `faster-whisper` (self-hosted) через отдельный локальный STT-сервис.
+
+## Текущая реализация (MVP v1)
+
+- Backend websocket endpoint: `WS /stt/stream` (в Node backend).
+- STT backend-клиент: проксирует аудио в `STT_BASE_URL + /transcribe`.
+- STT движок: Python FastAPI сервис `projects/backend/stt/faster-whisper/stt_local_server.py`.
+- Формат обмена между Node backend и STT-сервисом: JSON с `audioBase64`.
+
+### Переменные окружения (backend)
+
+- `STT_BASE_URL` — адрес STT-сервиса (пример: `http://127.0.0.1:8090`)
+- `STT_TIMEOUT_MS` — таймаут запроса в STT
+- `STT_MAX_AUDIO_BYTES` — лимит аудио в одном запросе `/transcribe`
+- `STT_STREAM_MAX_BUFFER_BYTES` — лимит буфера на websocket-сессию
+- `STT_STREAM_PARTIAL_INTERVAL_MS` — минимальный интервал между partial
+- `STT_DEFAULT_LANGUAGE` — язык по умолчанию
 
 ## API-контракты (предложение)
 
@@ -18,11 +35,16 @@
 
 - `WS /stt/stream`
 - Вход:
-  - бинарные аудио-чанки (`pcm16`/`opus`) + init message (`sampleRate`, `language`, `sessionId`)
+  - `{"type":"start","language?","sessionId?"}`
+  - бинарные аудио-чанки **или** `{"type":"chunk","audioBase64":"..."}`
+  - `{"type":"commit"}` — получить финальный текст по текущему буферу
+  - `{"type":"stop"}` — завершить сессию
+  - `{"type":"ping"}` — heartbeat
 - Выход:
-  - `partial` события (промежуточный текст),
-  - `final` события (финальный сегмент),
-  - `error` события (машиночитаемые коды).
+  - `connected` / `started` / `pong`
+  - `partial` (промежуточный текст),
+  - `final` (финальный сегмент),
+  - `error` (машиночитаемые коды).
 
 ### 2) Batch STT (fallback)
 

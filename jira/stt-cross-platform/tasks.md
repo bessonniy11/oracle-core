@@ -13,9 +13,9 @@
 
 ## Этап 1. Backend API для STT
 
-- [ ] Спроектировать контракты `WS /stt/stream` и `POST /stt/transcribe`.
-- [ ] Реализовать валидацию аудиоформатов, размеров и таймаутов.
-- [ ] Добавить единый error format с кодами retriable/non-retriable.
+- [x] Спроектировать контракты `WS /stt/stream` и `POST /stt/transcribe`.
+- [x] Реализовать валидацию аудиоформатов, размеров и таймаутов.
+- [x] Добавить единый error format с кодами retriable/non-retriable.
 - [ ] Реализовать логирование с correlation id.
 - [ ] Подзадачи:
   - [ ] Добавить integration tests для streaming STT.
